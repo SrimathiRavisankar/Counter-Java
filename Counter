@@ -1,0 +1,919 @@
+ 
+import javax.swing.*;
+
+import java.awt.*;
+
+import java.awt.event.*;
+
+import java.sql.*;
+
+import java.io.*;
+
+import java.util.*;
+
+import java.lang.String;
+import java.util.Scanner;
+import javax.swing.JFileChooser;
+import java.awt.*;
+import javax.swing.*;
+
+import javax.swing.JFileChooser;
+
+import javax.swing.table.DefaultTableModel;
+
+class Wax extends JFrame implements ActionListener
+
+{
+
+ JButton SUBMIT,DISPLAY,NEWCUS,MAKEBILL,select,select1,select2,select3,select4,select5,btn1,bb1,bb2,bb3,bb4,bb5,bb6,bb7,bb,bk1,bk2,bk3,bk4,bk5,bk6,bk7,bk8;
+      
+ JPanel panel,panel1,p1,p2,p3,p4,p5,p6,p7,p8,p9,pp6,pp7,pp8;
+
+ JLabel b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,label1,label2,l1,l2,l3,l4,l5,l6,l7,l8,l9,l10,l11,l12,l13,la,dd1,dd2,dd3;
+    
+ JTable tb1,tb2;
+    
+JFrame page,pp,g2,pg1,ff,ff1,ph;
+    
+int c=1,cn,qq,qq1,qq2,qq3;
+
+JComboBox cb1,st,cb2,cb3,cb5;
+String states[] = new String[7];
+
+String raw[] = new String[3];
+
+String str,str1,pn,ppp,cc;
+
+ JTextField  text1,text2,tf1,tf2,tf3,tf4,tf5,tf6,tf7,tf8,tf9,tf10,tf11,tf12,tf13,t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,cb4,dd4,ta1;
+Wax()
+{
+
+label1 = new JLabel();
+
+label1.setText("Username:");
+
+text1 = new JTextField(15);
+
+label2 = new JLabel();
+
+label2.setText("Password:");
+
+text2 = new JPasswordField(15);
+
+SUBMIT=new JButton("ENTER");
+
+panel=new JPanel(null);
+
+panel.setBackground(Color.cyan);
+
+label1.setBounds(40,70,300,30);
+
+text1.setBounds(200,70,300,30);
+
+label2.setBounds(40,110,300,30);
+
+text2.setBounds(200,110,300,30);
+
+SUBMIT.setBounds(40,150,300,30);
+
+panel.add(label1);
+panel.add(text1);
+
+panel.add(label2);
+
+panel.add(text2);
+
+panel.add(SUBMIT);
+
+add(panel,BorderLayout.CENTER);
+
+SUBMIT.addActionListener(this);
+
+setTitle("LOGIN FORM");
+
+}
+
+public void actionPerformed(ActionEvent ae)
+
+{
+
+String sss=ae.getActionCommand();
+
+if(sss.equals("ENTER"))
+
+{
+
+String value1=text1.getText();
+
+String value2=text2.getText();
+
+if (value1.equals("sri") && value2.equals("sree"))
+{JOptionPane.showMessageDialog(this,"Login Successful");
+
+page=new JFrame();
+
+page.setVisible(true);
+
+page.setSize(1400,700);
+
+p8=new JPanel(new FlowLayout());
+
+p2=new JPanel(new FlowLayout());
+
+b1=new JLabel("COUNTS");
+JLabel label = new JLabel();
+
+ label.setIcon(new ImageIcon("/home/linux/Desktop/dasd.jpeg"));
+
+
+b1.setForeground(Color.white);
+
+p8.setBackground(Color.black);
+
+b1.setFont(new Font("Serif", Font.BOLD, 74));
+
+b7=new JLabel("Welcome!!");
+b7.setForeground(Color.red);
+
+b7.setFont(new Font("Serif", Font.BOLD, 36));
+
+p8.add(b1);
+
+p2.add(label);
+
+p2.setBackground(Color.black);
+
+select=new JButton("SELECT FIND");
+select1=new JButton("NUMBERS");
+select2=new JButton("ALPHABETS");
+select3=new JButton("VOWELS");
+select4=new JButton("CONSONANTS");
+select5=new JButton("KEYWORDS");
+
+MAKEBILL=new JButton("COUNT");
+bb7=new JButton("HELP");
+
+panel1=new JPanel(new FlowLayout());
+panel1.add(MAKEBILL);
+panel1.add(bb7);
+panel1.add(select);
+panel1.add(select1);
+panel1.add(select2);
+panel1.add(select3);
+panel1.add(select4);
+panel1.add(select5);
+panel1.setBackground(Color.white);
+
+page.add(p8,BorderLayout.NORTH);
+
+page.add(p2,BorderLayout.CENTER);
+
+page.add(panel1,BorderLayout.SOUTH);
+select4.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent ae){
+try
+{
+
+
+  int charsCount = 0;
+    int wordsCount = 0;
+    int linesCount = 0;
+int i=0,l=0;
+    Scanner fileScanner = null;
+    File selectedFile = null;
+    JFileChooser chooser = new JFileChooser();
+    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+        selectedFile = chooser.getSelectedFile();
+        fileScanner = new Scanner(selectedFile);
+    }
+
+    while (fileScanner.hasNextLine()) {
+      linesCount++;
+      String line = fileScanner.nextLine();
+      Scanner lineScanner = new Scanner(line);
+      while(lineScanner.hasNext()) {
+        wordsCount++;
+        String word = lineScanner.next();
+        charsCount += word.length();
+ for(i=0;i<word.length();i++)
+{
+                                         char c=word.charAt(i);
+
+if(c=='a' || c=='A' || c=='e' || c=='E' || c=='i' || c=='I' || c=='o' || c=='O' || c=='u' || c=='U')
+             {
+}
+else
+l++;
+}
+      }
+
+    lineScanner.close();
+  }
+ JFrame f1=new JFrame("consonants counter");
+        f1.setSize(600,300);
+JPanel p1=new JPanel();
+        JPanel p2=new JPanel();
+        p2.setLayout(new BorderLayout());
+p2.setBackground(Color.blue);
+p1.setLayout(new GridLayout(3,2));
+p1.setBackground(Color.yellow);
+        JButton b1=new JButton("CLOSE");
+        JLabel l1,l2,l3;
+JLabel lf2 = new JLabel();
+
+ lf2.setIcon(new ImageIcon("/home/linux/Desktop/fasf.jpeg"));
+        l1=new JLabel(" NO OF consonants");
+       l1.setForeground(Color.black);
+l1.setFont(new Font("Andalus", Font.BOLD, 24));
+        /*l2=new JLabel("WORDS");
+ l2.setForeground(Color.black);
+l2.setFont(new Font("Andalus", Font.BOLD, 24));
+        l3=new JLabel("LINES");
+ l3.setForeground(Color.black);
+l3.setFont(new Font("Andalus", Font.BOLD, 24));*/
+        JTextField tl1;
+        tl1=new JTextField(15);
+//      t2=new JTextField(15);
+//      t3=new JTextField(15);
+        tl1.setText(" "+l);
+        //t2.setText(" "+wordsCount);
+        //t3.setText(" "+linesCount);
+ p1.add(l1);
+        p1.add(tl1);
+
+ p2.add(p1,BorderLayout.NORTH);
+p2.add(lf2,BorderLayout.CENTER);
+
+        f1.add(p2);
+  System.out.println("chars: " + charsCount);
+  System.out.println("words: " + wordsCount);
+  System.out.println("lines: " + linesCount);
+fileScanner.close();
+ f1.setVisible(true);
+
+}
+catch(IOException e1)
+{}
+}});
+select3.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent ae){
+try
+{
+
+
+  int charsCount = 0;
+    int wordsCount = 0;
+    int linesCount = 0;
+int i=0,l=0;
+    Scanner fileScanner = null;
+    File selectedFile = null;
+    JFileChooser chooser = new JFileChooser();
+    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+        selectedFile = chooser.getSelectedFile();
+        fileScanner = new Scanner(selectedFile);
+    }
+
+    while (fileScanner.hasNextLine()) {
+      linesCount++;
+      String line = fileScanner.nextLine();
+      Scanner lineScanner = new Scanner(line);
+      while(lineScanner.hasNext()) {
+wordsCount++;
+        String word = lineScanner.next();
+        charsCount += word.length();
+ for(i=0;i<word.length();i++)
+{
+char c=word.charAt(i);
+
+if(c=='a' || c=='A' || c=='e' || c=='E' || c=='i' || c=='I' || c=='o' || c=='O' || c=='u' || c=='U')
+             l++;
+}
+      }
+
+    lineScanner.close();
+  }
+ JFrame f1=new JFrame("vowel counter");
+        f1.setSize(600,110);
+        JPanel p1=new JPanel();
+        JPanel p2=new JPanel();
+        p2.setLayout(new BorderLayout());
+p2.setBackground(Color.blue);
+p1.setLayout(new GridLayout(3,2));
+p1.setBackground(Color.yellow);
+        JButton b1=new JButton("CLOSE");
+        JLabel l1,l2,l3;
+        l1=new JLabel(" NO OF VOWELS");
+       l1.setForeground(Color.black);
+l1.setFont(new Font("Andalus", Font.BOLD, 24));
+JLabel lf6=new JLabel();
+lf6.setIcon(new ImageIcon("/home/linux/Desktop/fasf.jpeg"));
+
+       
+        JTextField tl1;
+        tl1=new JTextField(15);
+
+        tl1.setText(" "+l);
+p1.add(l1);
+        p1.add(tl1);
+ p2.add(p1,BorderLayout.NORTH);
+p2.add(lf6,BorderLayout.CENTER);
+
+      f1.add(p2);
+  System.out.println("chars: " + charsCount);
+  System.out.println("words: " + wordsCount);
+  System.out.println("lines: " + linesCount);
+fileScanner.close();
+ f1.setVisible(true);
+
+}
+catch(IOException e1)
+{}
+}});
+
+
+
+select5.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent ae){
+
+JFrame f5=new JFrame("KEYWORD COUNTER");
+f5.setVisible(true);
+f5.setSize(1400,700);
+JPanel p5=new JPanel(new BorderLayout());
+JPanel p58=new JPanel(new FlowLayout());
+p5.setBackground(Color.black);
+p58.setBackground(Color.black);
+
+JLabel l4=new JLabel("SELECT THE PROGRAMMING LANGUAGE");
+l4.setForeground(Color.white);
+JPanel p51=new JPanel(new FlowLayout());
+l4.setFont(new Font("Serif", Font.BOLD, 50));
+JLabel li2 = new JLabel();
+
+ li2.setIcon(new ImageIcon("/home/linux/Desktop/9.jpeg"));
+
+JButton be1=new JButton ("JAVA");
+JButton be2=new JButton ("C ");
+p58.add(be1);
+p58.add(be2);
+p5.add(p58,BorderLayout.NORTH);
+p5.add(li2,BorderLayout.CENTER);
+p51.add(l4);
+p51.setBackground(Color.black);
+f5.add(p5,BorderLayout.CENTER);
+
+f5.add(p51,BorderLayout.NORTH);
+be1.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent e){
+try
+{
+  int charsCount = 0;
+    int wordsCount = 0;
+    int linesCount = 0;
+int i=0,l=0;
+    Scanner fileScanner = null;
+    File selectedFile = null;
+    JFileChooser chooser = new JFileChooser();
+    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+        selectedFile = chooser.getSelectedFile();
+        fileScanner = new Scanner(selectedFile);
+    }
+
+    while (fileScanner.hasNextLine()) {
+      linesCount++;
+      String line = fileScanner.nextLine();
+      Scanner lineScanner = new Scanner(line);
+      while(lineScanner.hasNext()) {
+        wordsCount++;
+String word = lineScanner.next();
+       if(word.equals("abstract")||word.equals("boolean")||word.equals("assert")||word.equals("break")||word.equals("byte")||word.equals("case")||word.equals("catch")||word.equals("char")||word.equals("class")||word.equals("const")||word.equals("continue")||word.equals("default")||word.equals("do")||word.equals("double")||word.equals("else")||word.equals("extends")||word.equals("false")||word.equals("final")||word.equals("finally")||word.equals("float")||word.equals("for")||word.equals("goto")||word.equals("if")||word.equals("implements")||word.equals("import")||word.equals("instanceof")||word.equals("int")||word.equals("interface")||word.equals("long")||word.equals("native")||word.equals("new")||word.equals("null")||word.equals("package")||word.equals("private")||word.equals("protected")||word.equals("public")||word.equals("return")||word.equals("short")||word.equals("static")||word.equals("strictfp")||word.equals("super")||word.equals("switch")||word.equals("synchronized")||word.equals("this")||word.equals("throw")||word.equals("throws")||word.equals("transient")||word.equals("true")||word.equals("try")||word.equals("void")||word.equals("volatile")||word.equals("while"))
+l++;
+
+}
+
+    lineScanner.close();
+  }
+ JFrame f1=new JFrame("KEYWORD COUNTER");
+        f1.setSize(600,110);
+        JPanel p1=new JPanel();
+        JPanel p2=new JPanel();
+        p2.setLayout(new BorderLayout());
+p1.setBackground(Color.yellow);
+        JButton b1=new JButton("CLOSE");
+        JLabel l1,l2,l3;
+        l1=new JLabel(" NO OF KEYWORDS");
+       l1.setForeground(Color.black);
+l1.setFont(new Font("Andalus", Font.BOLD, 24));
+        JTextField tl1;
+        tl1=new JTextField(15);
+        tl1.setText(" "+l);
+       
+        p1.add(l1);
+        p1.add(tl1);
+              p2.add(p1,BorderLayout.NORTH);
+        f1.add(p2);
+  System.out.println("chars: " + charsCount);
+  System.out.println("words: " + wordsCount);
+  System.out.println("lines: " + linesCount);
+fileScanner.close();
+ f1.setVisible(true);
+}
+catch(FileNotFoundException eo){}
+}});
+
+
+be2.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent e){
+try
+{
+int charsCount = 0;
+    int wordsCount = 0;
+    int linesCount = 0;
+int i=0,l=0;
+    Scanner fileScanner = null;
+    File selectedFile = null;
+    JFileChooser chooser = new JFileChooser();
+    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+        selectedFile = chooser.getSelectedFile();
+        fileScanner = new Scanner(selectedFile);
+    }
+
+    while (fileScanner.hasNextLine()) {
+      linesCount++;
+      String line = fileScanner.nextLine();
+      Scanner lineScanner = new Scanner(line);
+      while(lineScanner.hasNext()) {
+        wordsCount++;
+        String word = lineScanner.next();
+       if(word.equals("auto")||word.equals("break")||word.equals("case")||word.equals("char")||word.equals("const")||word.equals("continue")||word.equals("default")||word.equals("do")||word.equals("double")||word.equals("else")||word.equals("enum")||word.equals("extern")||word.equals("float")||word.equals("for")||word.equals("goto")||word.equals("if")||word.equals("int")||word.equals("long")||word.equals("register")||word.equals("return")||word.equals("short")||word.equals("signed")||word.equals("sizeof")||word.equals("static")||word.equals("struct")||word.equals("switch")||word.equals("typedef")||word.equals("union")||word.equals("unsigned")||word.equals("void")||word.equals("volatile")||word.equals("while"))
+l++;
+}
+
+    lineScanner.close();
+  }
+ JFrame f1=new JFrame("KEYWORD COUNTER");
+        f1.setSize(600,110);
+        JPanel p1=new JPanel();
+        JPanel p2=new JPanel();
+        p2.setLayout(new BorderLayout());
+p2.setBackground(Color.blue);
+p1.setLayout(new GridLayout(3,2));
+p1.setBackground(Color.yellow);
+        JButton b1=new JButton("CLOSE");
+        JLabel l1,l2,l3;
+        l1=new JLabel(" NO OF KEYWORDS");
+       l1.setForeground(Color.black);
+l1.setFont(new Font("Andalus", Font.BOLD, 24));
+        /*l2=new JLabel("WORDS");
+ l2.setForeground(Color.black);
+l2.setFont(new Font("Andalus", Font.BOLD, 24));
+        l3=new JLabel("LINES");
+ l3.setForeground(Color.black);
+l3.setFont(new Font("Andalus", Font.BOLD, 24));*/
+        JTextField tl1;
+        tl1=new JTextField(15);
+       tl1.setText(" "+l);
+        p1.add(l1);
+        p1.add(tl1);
+        p2.add(p1,BorderLayout.NORTH);
+        f1.add(p2);
+  System.out.println("chars: " + charsCount);
+  System.out.println("words: " + wordsCount);
+  System.out.println("lines: " + linesCount);
+fileScanner.close();
+ f1.setVisible(true);
+}
+catch(FileNotFoundException eo){}
+}});
+//catch(FileNotFoundException ei){}
+}});
+
+select1.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent ae){
+try
+{
+
+
+  int charsCount = 0;
+    int wordsCount = 0;
+    int linesCount = 0;
+int i=0,l=0;
+    Scanner fileScanner = null;
+    File selectedFile = null;
+    JFileChooser chooser = new JFileChooser();
+    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+        selectedFile = chooser.getSelectedFile();
+        fileScanner = new Scanner(selectedFile);         
+    }
+
+    while (fileScanner.hasNextLine()) {
+      linesCount++;
+      String line = fileScanner.nextLine();
+      Scanner lineScanner = new Scanner(line);
+      while(lineScanner.hasNext()) {
+        wordsCount++;
+        String word = lineScanner.next();
+        charsCount += word.length();
+         for(i=0;i<word.length();i++)
+{ 
+         if(Character.isDigit(word.charAt(i)))
+             l++;
+}
+      } 
+
+    lineScanner.close();
+  }
+ JFrame f1=new JFrame("NUMBER COUNTER");
+	f1.setSize(600,110);
+	JPanel p1=new JPanel();
+        JPanel p2=new JPanel();
+        p2.setLayout(new BorderLayout());
+p2.setBackground(Color.blue);
+p1.setLayout(new GridLayout(3,2));
+p1.setBackground(Color.yellow);
+	JButton b1=new JButton("CLOSE");
+	JLabel l1,l2,l3;
+	l1=new JLabel(" NO OF NUMBERS");
+       l1.setForeground(Color.black);
+l1.setFont(new Font("Andalus", Font.BOLD, 24));
+	/*l2=new JLabel("WORDS");
+ l2.setForeground(Color.black);
+l2.setFont(new Font("Andalus", Font.BOLD, 24));
+	l3=new JLabel("LINES");
+ l3.setForeground(Color.black);
+l3.setFont(new Font("Andalus", Font.BOLD, 24));*/
+	JTextField tl1;
+	tl1=new JTextField(15);
+	tl1.setText(" "+l);
+	p1.add(l1);
+	p1.add(tl1);
+        p2.add(p1,BorderLayout.NORTH);
+	f1.add(p2); 
+  System.out.println("chars: " + charsCount);
+  System.out.println("words: " + wordsCount);
+  System.out.println("lines: " + linesCount);
+fileScanner.close();
+ f1.setVisible(true);
+
+}
+catch(FileNotFoundException e)
+{
+
+}
+}
+});
+
+
+
+select2.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent ae){
+try
+{
+
+
+  int charsCount = 0;
+    int wordsCount = 0;
+    int linesCount = 0;
+int i=0,l=0;
+    Scanner fileScanner = null;
+    File selectedFile = null;
+    JFileChooser chooser = new JFileChooser();
+    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+        selectedFile = chooser.getSelectedFile();
+        fileScanner = new Scanner(selectedFile);
+    }
+
+    while (fileScanner.hasNextLine()) {
+      linesCount++;
+      String line = fileScanner.nextLine();
+      Scanner lineScanner = new Scanner(line);
+      while(lineScanner.hasNext()) {
+        wordsCount++;
+        String word = lineScanner.next();
+        charsCount += word.length();
+         for(i=0;i<word.length();i++)
+{
+         if(!Character.isDigit(word.charAt(i)))
+             l++;
+}
+      }
+
+    lineScanner.close();
+  }
+ JFrame f1=new JFrame("ALPHABET COUNTER");
+        f1.setSize(600,110);
+        JPanel p1=new JPanel();
+        JPanel p2=new JPanel();
+JLabel li3 = new JLabel();
+
+ li3.setIcon(new ImageIcon("/home/linux/Desktop/th.jpeg"));
+p2.setLayout(new BorderLayout());
+p2.setBackground(Color.blue);
+p1.setLayout(new GridLayout(3,2));
+p1.setBackground(Color.yellow);
+        JButton b1=new JButton("CLOSE");
+        JLabel l1,l2,l3;
+        l1=new JLabel(" NO OF ALPHABETS:");
+       l1.setForeground(Color.black);
+l1.setFont(new Font("Andalus", Font.BOLD, 24));
+        /*l2=new JLabel("WORDS");
+ l2.setForeground(Color.black);
+l2.setFont(new Font("Andalus", Font.BOLD, 24));
+        l3=new JLabel("LINES");
+ l3.setForeground(Color.black);
+l3.setFont(new Font("Andalus", Font.BOLD, 24));*/
+        JTextField tl1;
+        tl1=new JTextField(15);
+//      t2=new JTextField(15);
+//      t3=new JTextField(15);
+        tl1.setText(" "+l);
+        //t2.setText(" "+wordsCount);
+        //t3.setText(" "+linesCount);
+        p1.add(l1);
+        p1.add(tl1);
+        //p1.add(l2);
+        //p1.add(t2);
+        //p1.add(l3);
+        //p1.add(t3);
+        p2.add(p1,BorderLayout.NORTH);
+p2.add(li3,BorderLayout.CENTER);
+        f1.add(p2);
+  System.out.println("chars: " + charsCount);
+  System.out.println("words: " + wordsCount);
+  System.out.println("lines: " + linesCount);
+fileScanner.close();
+ f1.setVisible(true);
+
+}
+catch(IOException e1)
+{}
+}});
+
+
+
+select.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent ae){
+try
+{
+JFrame fs=new JFrame("select find");
+int charsCount = 0;
+    int wordsCount = 0;
+    int linesCount = 0;
+    Scanner fileScanner = null;
+    File selectedFile = null;
+    JFileChooser chooser = new JFileChooser();
+    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+        selectedFile = chooser.getSelectedFile();
+        fileScanner = new Scanner(selectedFile);         
+    }
+
+    while (fileScanner.hasNextLine()) {
+      linesCount++;
+      String line = fileScanner.nextLine();
+      Scanner lineScanner = new Scanner(line);
+      while(lineScanner.hasNext()) {
+        wordsCount++;
+        String word = lineScanner.next();
+        charsCount += word.length();
+      } 
+
+    lineScanner.close();
+  }
+ JFrame fq1=new JFrame("CODE COUNTER");
+	fq1.setSize(600,110);
+	JPanel p1=new JPanel();
+        JPanel p2=new JPanel();
+        p2.setLayout(new BorderLayout());
+p2.setBackground(Color.blue);
+p1.setLayout(new GridLayout(3,2));
+p1.setBackground(Color.yellow);
+	JButton b1=new JButton("CLOSE");
+	JLabel l1,l2,l3;
+	l1=new JLabel("CHARACTERS");
+       l1.setForeground(Color.black);
+l1.setFont(new Font("Andalus", Font.BOLD, 24));
+	l2=new JLabel("WORDS");
+ l2.setForeground(Color.black);
+l2.setFont(new Font("Andalus", Font.BOLD, 24));
+	l3=new JLabel("LINES");
+ l3.setForeground(Color.black);
+l3.setFont(new Font("Andalus", Font.BOLD, 24));
+	JTextField t1,t2,t3;
+	t1=new JTextField(15);
+	t2=new JTextField(15);
+	t3=new JTextField(15);
+	t1.setText(" "+charsCount);
+	t2.setText(" "+wordsCount);
+	t3.setText(" "+linesCount);
+	p1.add(l1);
+	p1.add(t1);
+	p1.add(l2);
+	p1.add(t2);
+	p1.add(l3);
+	p1.add(t3);
+        p2.add(p1,BorderLayout.NORTH);
+	fq1.add(p2); 
+  System.out.println("chars: " + charsCount);
+  System.out.println("words: " + wordsCount);
+  System.out.println("lines: " + linesCount);
+fileScanner.close();
+ fq1.setVisible(true);
+}
+catch(FileNotFoundException e)
+{
+}
+
+
+}
+});
+
+MAKEBILL.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent ae){
+
+
+JFrame f1=new JFrame("count");
+f1.setVisible(true);
+f1.setSize(1400,700);
+JPanel p1=new JPanel(new FlowLayout());
+ta1=new JTextField(20);
+JLabel la1=new JLabel("Enter the word ");
+la1.setFont(new Font("Serif", Font.BOLD, 30));
+JButton ba1=new JButton ("enter");
+JLabel li5 = new JLabel();
+ li5.setIcon(new ImageIcon("/home/linux/Desktop/5.jpeg"));
+p1.setBackground(Color.BLACK);
+p1.add(la1);
+p1.add(ta1);
+p1.add(ba1);
+
+f1.add(p1,BorderLayout.CENTER);
+f1.add(li5,BorderLayout.EAST);
+final String s=ta1.getText();
+System.out.println(s);
+
+ba1.addActionListener(new ActionListener() {
+
+
+             public void actionPerformed(ActionEvent ae){
+try
+{
+String s=ta1.getText();
+System.out.println(s);
+int charsCount = 0;
+    int wordsCount = 0;
+    int linesCount = 0;
+    Scanner fileScanner = null;
+    File selectedFile = null;
+    JFileChooser chooser = new JFileChooser();
+    if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+        selectedFile = chooser.getSelectedFile();
+        fileScanner = new Scanner(selectedFile);         
+    }
+
+    while (fileScanner.hasNextLine()) {
+      linesCount++;
+      String line = fileScanner.nextLine();
+      Scanner lineScanner = new Scanner(line);
+      while(lineScanner.hasNext()) {
+        //wordsCount++;
+        String word = lineScanner.next();
+System.out.println(s);
+System.out.println(word);
+          if(s.equals(word))
+wordsCount++;   
+        charsCount += word.length();
+      } 
+
+    lineScanner.close();
+  }
+ JFrame f1=new JFrame("CODE COUNTER");
+	f1.setSize(600,110);
+	JPanel p1=new JPanel();
+        JPanel p2=new JPanel();
+        p2.setLayout(new BorderLayout());
+p2.setBackground(Color.blue);
+p1.setLayout(new GridLayout(3,2));
+p1.setBackground(Color.yellow);
+	JButton b1=new JButton("CLOSE");
+	JLabel l1,l2,l3;
+	l1=new JLabel("OCCURENCES");
+       l1.setForeground(Color.black);
+l1.setFont(new Font("Andalus", Font.BOLD, 24));
+	/*l2=new JLabel("WORDS");
+ l2.setForeground(Color.black);
+l2.setFont(new Font("Andalus", Font.BOLD, 24));
+	l3=new JLabel("LINES");
+ l3.setForeground(Color.black);
+l3.setFont(new Font("Andalus", Font.BOLD, 24));*/
+	//JTextField t1,t2,t3;
+	t1=new JTextField(15);
+	//t2=new JTextField(15);
+	//t3=new JTextField(15);
+
+	t1.setText(" "+wordsCount);
+p1.add(l1);
+        p1.add(t1);
+ p2.add(p1,BorderLayout.NORTH);
+	f1.add(p2);
+fileScanner.close();
+ f1.setVisible(true);
+
+
+}
+catch(FileNotFoundException e)
+{
+}
+
+
+}
+});
+
+}
+});
+
+bb7.addActionListener(new ActionListener() {
+
+             public void actionPerformed(ActionEvent ae){
+JFrame fr=new JFrame("HELP");
+fr.setSize(1000,1000);
+fr.setLayout(new BorderLayout());
+//fr.setVisible(true);
+
+JPanel p11=new JPanel();
+p11.setBackground(Color.black);
+p11.setLayout(new GridLayout(6,0));
+JLabel label1 = new JLabel();
+
+ label1.setIcon(new ImageIcon("/home/linux/Desktop/6.jpeg"));
+
+label1.setBounds(600, 30, 400, 100);
+
+JLabel l1=new JLabel("FOLLOW THE STEPS BELOW");
+l1.setFont(new Font("Serif", Font.BOLD, 50));
+l1.setForeground(Color.red);
+JLabel l2=new JLabel("1) Enter the login name and password");
+l2.setFont(new Font("Serif", Font.BOLD, 30));
+l2.setForeground(Color.cyan);
+JLabel l3=new JLabel("2)In the home page click the options button accordingly");
+l3.setFont(new Font("Serif", Font.BOLD, 30));
+l3.setForeground(Color.cyan);
+JLabel l4=new JLabel("3) Click the button for getting counts");
+l4.setFont(new Font("Serif", Font.BOLD, 30));
+l4.setForeground(Color.cyan);
+JLabel l5=new JLabel("4) After completing can goto home again to go for others");
+l5.setFont(new Font("Serif", Font.BOLD, 30));
+l5.setForeground(Color.cyan);
+p11.add(label1);
+p11.add(l1);
+p11.add(l2);
+p11.add(l3);
+p11.add(l4);
+p11.add(l5);
+//p11.add(label1);
+fr.add(p11);
+fr.setVisible(true);
+}
+});
+}
+
+else
+
+JOptionPane.showMessageDialog(this,"Incorrect login or password","Error",JOptionPane.ERROR_MESSAGE);
+
+}
+}
+
+}
+public class front
+
+{
+public static void main(String arg[])
+
+{
+
+try
+
+{
+
+Wax frame=new Wax();
+
+frame.setSize(400,400);
+
+frame.setVisible(true);
+}
+
+catch(Exception e)
+{
+JOptionPane.showMessageDialog(null, e.getMessage());
+}
+}
+}
+
